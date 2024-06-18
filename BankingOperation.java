@@ -276,4 +276,42 @@ class BankingOperation implements Transaction
             System.out.println("Invalid Account Number\n");
         }
     }
-}
+
+
+
+    public class BankApplication {
+        private Map<String, BankingOperation> operations = new HashMap<>();
+        private Scanner input;
+
+        public BankApplication(Scanner input) {
+            this.input = input;
+            initializeOperations();
+        }
+
+        private void initializeOperations() {
+            operations.put("CreateAccount", new CreateNewBankAccountOperation(input));
+            operations.put("Deposit", new DepositOperation(input));
+            operations.put("Withdraw", new WithdrawOperation(input));
+            operations.put("DisplayDetails", new DisplayAccountDetailsOperation(input));
+        }
+
+        public void executeOperation(String operationType) {
+            BankingOperation operation = operations.get(operationType);
+            if (operation != null) {
+                operation.execute();
+            } else {
+                throw new UnsupportedOperationException("Operación no soportada: " + operationType);
+            }
+        }
+
+        public static void main(String[] args) {
+            Scanner input = new Scanner(System.in);
+            BankApplication bankApplication = new BankApplication(input);
+
+            // Ejemplo de cómo ejecutar una operación
+            System.out.println("Seleccione una operación: CreateAccount, Deposit, Withdraw, DisplayDetails");
+            String operationType = input.next();
+            bankApplication.executeOperation(operationType);
+        }
+    }
+
