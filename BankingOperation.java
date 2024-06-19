@@ -15,13 +15,10 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class BankingOperation implements Transaction {
-    private boolean flag;
-    private InputProvider input;
-    private UserDetailsService userDetailsService;
+    private final InputReader inputReader;
 
-    public BankingOperation(InputProvider input, UserDetailsService userDetailsService) {
-        this.input = input;
-        this.userDetailsService = userDetailsService;
+    public BankingOperation(InputReader inputReader) {
+        this.inputReader = inputReader;
     }
 
     public void createNewBankAccount() {
