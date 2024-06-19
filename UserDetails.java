@@ -11,74 +11,78 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class UserDetails {
-    static long uniquenumber=1010106001;
+    private static long uniquenumber = 1010106001;
     private String firstname;
     private String lastname;
-    private int age,balanceamount;
+    private int age;
+    private int balanceamount;
     private String mobilenumber;
     private String aadharnumber;
-    static long accountnumber;
-    Queue<History>TransactionHistory;
+    private long accountnumber;
+    Queue<History> TransactionHistory;
 
-    UserDetails() 
-    {
+    public UserDetails() {
         this.TransactionHistory = new LinkedList<>();
     }
-    public void setAccountnumber()
-    {
-        UserDetails.accountnumber=uniquenumber;
+
+    public void setAccountnumber() {
+        this.accountnumber = uniquenumber;
         uniquenumber++;
     }
-    public long getAccountnumber()
-    {
+
+    public long getAccountnumber() {
         return accountnumber;
     }
-    public void setBalanceamount(int balanceamount)
-    {
-        this.balanceamount=balanceamount;
+
+    public void setBalanceamount(int balanceamount) {
+        this.balanceamount = balanceamount;
     }
-    public int getBalanceamount()
-    {
+
+    public int getBalanceamount() {
         return balanceamount;
     }
-    public String getFirstname()
-    {
+
+    public String getFirstname() {
         return firstname;
     }
-    public void setFirstname(String firstname)
-    {
-        this.firstname=firstname;
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
-    public String getLastname()
-    {
+
+    public String getLastname() {
         return lastname;
     }
-    public void setLastname(String lastname)
-    {
-        this.lastname=lastname;
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
-    public int getAge()
-    {
+
+    public int getAge() {
         return age;
     }
-    public void setAge(int age)
-    {
-        this.age=age;
+
+    public void setAge(int age) {
+        this.age = age;
     }
-    public String getMobilenumber()
-    {
+
+    public String getMobilenumber() {
         return mobilenumber;
     }
-    public void setMobilenumber(String mobilenumber)
-    {
-        this.mobilenumber=mobilenumber;
+
+    public void setMobilenumber(String mobilenumber) {
+        this.mobilenumber = mobilenumber;
     }
-    public String getAadharnumber()
-    {
+
+    public String getAadharnumber() {
         return aadharnumber;
     }
-    public void setAadharnumber(String aadharnumber)
-    {
-        this.aadharnumber=aadharnumber;
+
+    public void setAadharnumber(String aadharnumber) {
+        this.aadharnumber = aadharnumber;
+    }
+
+    public Queue<History> getTransactionHistory() {
+        return TransactionHistory;
     }
 }

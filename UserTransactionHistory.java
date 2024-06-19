@@ -12,33 +12,24 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 public class UserTransactionHistory {
-    void usertransactionhistory()
-    {
-        @SuppressWarnings("resource")
-		Scanner input=new Scanner(System.in);
-        HashSet<UserDetails>TransactionDetailSet=BankingOperation.UserDetailSet;
-        int flag = 0;
-        System.out.println("Enter Account number: ");
-        int accntNumber = input.nextInt();
-        Iterator<UserDetails> iterator = TransactionDetailSet.iterator();
-        UserDetails userdetails;
-        while(iterator.hasNext())
-        {
-            userdetails = (UserDetails) iterator.next();
-            if(userdetails.getAccountnumber()== accntNumber)
-            {
-                flag = 1;
-                System.out.println("Credit | Debit | Total");
-                for(History s : userdetails.TransactionHistory)
-                {
-                    System.out.println(s.CreditAmount + " | " + s.DebitAmount + " | " + s.TotalAmount+"\n");
-                }
-                break;
+    private UserDetailsRepository userRepository;
+
+    public UserTransactionHistory(UserDetailsRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public void getUserTransactionHistory(int accountNumber) {
+        UserDetails userDetails = userRepository.getUserDetailsByAccountNumber(accountNumber);
+
+        if (userDetails != null) {
+            System.out.println("Credit | Debit | Total");
+            for (History transaction : userDetails.getTransactionHistory()) {
+                System.out.println(transaction.getCreditAmount() + " | " +
+                        transaction.getDebitAmount() + " | " +
+                        transaction.getTotalAmount());
             }
-        }
-        if(flag == 0)
-        {
-            System.out.println("BankAccount Not Available\n");
+        } else {
+            System.out.println("BankAccount Not Available");
         }
     }
 }
